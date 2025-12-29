@@ -1,0 +1,14 @@
+modLoader = "javafml"
+loaderVersion = "*"
+issueTrackerURL = "https://github.com/Hari-s/harium/issues"
+license = "LGPL-3.0-only"
+
+[[mods]]
+modId = "harium"
+version = "${version}"
+displayName = "Harium"
+logoFile = "icon.png"
+description = "A Forge port of Lithium designed to improve the general performance of Minecraft without breaking things. Based on Radium with Lithium optimizations merged."
+credits = "JellySquid, 2No2Name, dima_dencep, NanoLive"
+authors = "Hari"
+provides=["lithium", "radium"]
