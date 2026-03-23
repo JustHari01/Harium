@@ -1,0 +1,17 @@
+modLoader = "javafml"
+loaderVersion = "*"
+issueTrackerURL = "https://github.com/JustHari01/Harium/issues"
+license = "LGPL-3.0-only"
+
+[[mods]]
+modId = "harium"
+version = "${version}"
+displayName = "Harium"
+updateJSONURL = ""
+logoFile = "icon.png"
+description = "A high-performance Forge mod that improves general Minecraft performance. Fork of Radium/Lithium."
+credits = "JellySquid, 2No2Name, dima_dencep, NanoLive (Original Radium authors)"
+authors = "HariMT"
+displayURL = "https://github.com/JustHari01/Harium"
+provides=["lithium", "radium"]
+
