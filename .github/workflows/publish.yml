@@ -3,6 +3,9 @@ name: Publish Release
 on:
   push:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -82,4 +85,5 @@ jobs:
 
           java: |
             17
+
 
