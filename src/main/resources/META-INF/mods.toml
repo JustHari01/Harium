@@ -9,9 +9,9 @@ version = "${version}"
 displayName = "Harium"
 updateJSONURL = ""
 logoFile = "icon.png"
-description = "A high-performance Forge mod that improves general Minecraft performance. Fork of Radium/Lithium."
+description = "General performance optimization for Minecraft. Fork of Radium/Lithium."
 credits = "JellySquid, 2No2Name, dima_dencep, NanoLive (Original Radium authors)"
-authors = "HariMT"
-displayURL = "https://github.com/JustHari01/Harium"
+authors = "HariMT (Discord: 424549306205208577)"
+displayURL = "https://discord.gg/atKQ3KrAK3"
 provides=["lithium", "radium"]
 

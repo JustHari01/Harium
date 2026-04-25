@@ -29,4 +29,10 @@ public class Distances {
     public static boolean isWithinCircleRadius(BlockPos origin, double radiusSq, BlockPos pos) {
         return origin.getSquaredDistance(pos) <= radiusSq;
     }
+
+    public static int getClosestBlockCoordInSection(int center, int sectionCoord) {
+        int sectionMin = ChunkSectionPos.getBlockCoord(sectionCoord);
+        int sectionMax = sectionMin + 15;
+        return Math.max(sectionMin, Math.min(center, sectionMax));
+    }
 }

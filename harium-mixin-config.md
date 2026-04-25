@@ -35,6 +35,10 @@ other entities are nearby, they will instead be notified only occasionally when 
 their range.
   
   
+### `mixin.ai.non_poi_block_search`
+(default: `true`)  
+Optimizes Non-POI block search using hasAny to return early or reduce block searches  
+  
 ### `mixin.ai.pathing`
 (default: `true`)  
 A faster code path is used for determining what kind of path-finding node type is associated with a
@@ -60,6 +64,10 @@ Mob Tasks which search for POIs use the optimized POI search
 (default: `true`)  
 Avoids unnecessary raid bar updates and optimizes expensive leader banner operations  
   
+### `mixin.ai.sensor.replace_streams.tempting`
+(default: `true`)  
+Replace Stream code of tempting sensor player search with more traditional iteration  
+  
 ### `mixin.ai.sensor.secondary_poi`
 (default: `true`)  
 Avoid unnecessary secondary POI searches of non-farmer villagers  
@@ -79,6 +87,30 @@ Keep track of AI memory changes to skip checking AI task memory prerequisites
 ### `mixin.ai.task.replace_streams`
 (default: `true`)  
 Replace Stream code of AI tasks with more traditional iteration.  
+  
+### `mixin.ai.task.run.long_jump_weighted_choice`
+(default: `true`)  
+Speed up the weighted random choice of long jump target positions  
+  
+### `mixin.ai.useless_behaviors`
+(default: `true`)  
+Disable useless behaviors  
+  
+### `mixin.ai.useless_behaviors.nitwit_job_search`
+(default: `true`)  
+Remove job site AcquirePoi behavior for nitwits  
+  
+### `mixin.ai.useless_sensors`
+(default: `true`)  
+Disabling useless brain sensors to avoid useless sensing calculations  
+  
+### `mixin.ai.useless_sensors.goat_item_sensor`
+(default: `true`)  
+Disable the goat item sensor whose memories are never used  
+  
+### `mixin.ai.useless_sensors.parent_animal_sensor`
+(default: `true`)  
+Disable the parent animal sensor when an animal is not a baby  
   
 ### `mixin.alloc`
 (default: `true`)  
@@ -299,6 +331,10 @@ Skip checking whether an entity is inside powder snow for movement speed slowdow
 (default: `true`)  
 Access entities faster when accessing a relatively small number of entity sections  
   
+### `mixin.entity.framed_maps`
+(default: `true`)  
+Avoid map items in item frames performing inventory scanning quadratic in the number of online players  
+  
 ### `mixin.entity.hopper_minecart`
 (default: `true`)  
 Hopper minecarts search for item entities faster by combining multiple item entity searches. Also eliminates duplicated item entity pickup attempts  
@@ -306,6 +342,10 @@ Hopper minecarts search for item entities faster by combining multiple item enti
 ### `mixin.entity.inactive_navigations`
 (default: `true`)  
 Block updates skip notifying mobs that won't react to the block update anyways  
+  
+### `mixin.entity.projectile_projectile_collisions`
+(default: `true`)  
+Optimize huge stacks of projectiles by skipping projectile-projectile collision checks  
   
 ### `mixin.entity.replace_entitytype_predicates`
 (default: `true`)  
@@ -517,6 +557,14 @@ BlockEntity sleeping for inactive furnaces
 ### `mixin.world.block_entity_ticking.sleeping.hopper`
 (default: `true`)  
 BlockEntity sleeping for locked hoppers  
+  
+### `mixin.world.block_entity_ticking.sleeping.sculk_catalyst`
+(default: `true`)  
+Put sculk catalysts to sleep when they have no cursors to spread  
+  
+### `mixin.world.block_entity_ticking.sleeping.sculk_sensor_shrieker`
+(default: `true`)  
+BlockEntity sleeping for inactive sculk sensors and sculk shriekers  
   
 ### `mixin.world.block_entity_ticking.sleeping.shulker_box`
 (default: `true`)  

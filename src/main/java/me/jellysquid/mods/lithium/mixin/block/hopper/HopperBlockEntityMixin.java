@@ -825,7 +825,7 @@ public abstract class HopperBlockEntityMixin extends BlockEntity implements Hopp
                     this.collectItemEntityTracker.listenToEntityMovementOnce(this);
                 }
                 thisTracker.listenForContentChangesOnce(thisStackList, this);
-                thisSleepingBlockEntity.startSleeping();
+                thisSleepingBlockEntity.lithium$startSleeping();
             }
         }
     }

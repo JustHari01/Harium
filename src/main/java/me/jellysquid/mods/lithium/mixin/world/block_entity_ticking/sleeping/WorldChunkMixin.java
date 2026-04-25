@@ -1,17 +1,16 @@
 package me.jellysquid.mods.lithium.mixin.world.block_entity_ticking.sleeping;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import me.jellysquid.mods.lithium.common.block.entity.SleepingBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.chunk.BlockEntityTickInvoker;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Coerce;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(WorldChunk.class)
 public class WorldChunkMixin {
@@ -21,12 +20,11 @@ public class WorldChunkMixin {
                     "method_31719",
                     "m_187960_"
             },
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addBlockEntityTicker(Lnet/minecraft/world/chunk/BlockEntityTickInvoker;)V" ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addBlockEntityTicker(Lnet/minecraft/world/chunk/BlockEntityTickInvoker;)V")
     )
-    private void setBlockEntityTickingOrder(BlockEntity blockEntity, BlockEntityTicker<?> blockEntityTicker, BlockPos pos, @Coerce Object wrappedBlockEntityTickInvoker, CallbackInfoReturnable<?> cir, BlockEntityTickInvoker blockEntityTickInvoker, @Coerce Object wrappedBlockEntityTickInvoker2) {
+    private void setBlockEntityTickingOrder(BlockEntity blockEntity, BlockEntityTicker<?> blockEntityTicker, BlockPos pos, @Coerce Object wrappedBlockEntityTickInvoker, CallbackInfoReturnable<?> cir, @Local(ordinal = 1) @Coerce Object wrappedBlockEntityTickInvoker2) {
         if (blockEntity instanceof SleepingBlockEntity sleepingBlockEntity) {
-            sleepingBlockEntity.setTickWrapper((WrappedBlockEntityTickInvokerAccessor) wrappedBlockEntityTickInvoker2);
+            sleepingBlockEntity.lithium$setTickWrapper((WrappedBlockEntityTickInvokerAccessor) wrappedBlockEntityTickInvoker2);
         }
     }
 
@@ -35,12 +33,11 @@ public class WorldChunkMixin {
                     "method_31719",
                     "m_187960_"
             },
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/chunk/WorldChunk$WrappedBlockEntityTickInvoker;setWrapped(Lnet/minecraft/world/chunk/BlockEntityTickInvoker;)V" ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/chunk/WorldChunk$WrappedBlockEntityTickInvoker;setWrapped(Lnet/minecraft/world/chunk/BlockEntityTickInvoker;)V")
     )
-    private void setBlockEntityTickingOrder(BlockEntity blockEntity, BlockEntityTicker<?> blockEntityTicker, BlockPos pos, @Coerce Object wrappedBlockEntityTickInvoker, CallbackInfoReturnable<?> cir, BlockEntityTickInvoker blockEntityTickInvoker) {
+    private void setBlockEntityTickingOrder(BlockEntity blockEntity, BlockEntityTicker<?> blockEntityTicker, BlockPos pos, @Coerce Object wrappedBlockEntityTickInvoker, CallbackInfoReturnable<?> cir) {
         if (blockEntity instanceof SleepingBlockEntity sleepingBlockEntity) {
-            sleepingBlockEntity.setTickWrapper((WrappedBlockEntityTickInvokerAccessor) wrappedBlockEntityTickInvoker);
+            sleepingBlockEntity.lithium$setTickWrapper((WrappedBlockEntityTickInvokerAccessor) wrappedBlockEntityTickInvoker);
         }
     }
 

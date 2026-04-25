@@ -7,9 +7,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(targets = "net/minecraft/world/chunk/WorldChunk$WrappedBlockEntityTickInvoker" )
 public interface WrappedBlockEntityTickInvokerAccessor {
-    @Invoker
+    @Invoker("setWrapped")
     void callSetWrapped(BlockEntityTickInvoker wrapped);
 
-    @Accessor
+    @Accessor("wrapped")
     BlockEntityTickInvoker getWrapped();
 }

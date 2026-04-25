@@ -34,6 +34,42 @@ public class LithiumConfig extends AbstractCaffeineConfigMixinPlugin {
             config.getOption("mixin.ai.poi").addModOverride(false, "valkyrienskies");
         }
 
+        // === Cross-mod compatibility for HariMultiThread, HariPlayer, HariChunk ===
+
+        boolean hasHariMT = LoadingModList.get().getModFileById("harimt") != null;
+        boolean hasHariPlayer = LoadingModList.get().getModFileById("hariplayer") != null
+                || LoadingModList.get().getModFileById("vmp") != null;
+        boolean hasHariChunk = LoadingModList.get().getModFileById("harichunk") != null
+                || LoadingModList.get().getModFileById("c2me") != null;
+
+        // HariMultiThread compat: async entity ticking needs thread-safe data trackers
+        // Disable no_locks DataTracker mixin - HariMultiThread's SyncAll adds synchronized instead
+        if (hasHariMT) {
+            Option dataTrackerNoLocks = config.getOption("mixin.entity.data_tracker.no_locks");
+            if (dataTrackerNoLocks != null && dataTrackerNoLocks.isEnabled()) {
+                dataTrackerNoLocks.addModOverride(false, "harimt");
+            }
+        }
+
+        // HariPlayer compat: both Harium and HariPlayer @Overwrite TypeFilterableList.getAllOfType()
+        // HariPlayer's fastutil-based version is more optimized and has priority 1005
+        // Disable Harium's entity_filtering TypeFilterableList mixin to avoid @Overwrite conflict
+        if (hasHariPlayer) {
+            Option typeFilterable = config.getOption("mixin.collections.entity_filtering");
+            if (typeFilterable != null && typeFilterable.isEnabled()) {
+                typeFilterable.addModOverride(false, "hariplayer");
+            }
+        }
+
+        // HariChunk/C2ME compat: both modify worldgen threading
+        // When C2ME handles worldgen threading, disable some gen optimizations to avoid conflicts
+        if (hasHariChunk) {
+            Option genChunkRegion = config.getOption("mixin.gen.chunk_region");
+            if (genChunkRegion != null && genChunkRegion.isEnabled()) {
+                genChunkRegion.addModOverride(false, "harichunk");
+            }
+        }
+
         if (!LoadingModList.get().getErrors().isEmpty()) {
             for (Option op : config.getOptions().values()) {
                 op.addModOverride(false, "fml-loading-error");

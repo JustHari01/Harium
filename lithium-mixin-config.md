@@ -45,9 +45,13 @@ Requirements:
 - `mixin.util.chunk_access=true`  
   
 ### `mixin.ai.poi`
-(default: `true`)  
-Implements a faster POI search  
-  
+(default: `true`)
+Implements a faster POI search
+
+### `mixin.ai.non_poi_block_search`
+(default: `true`)
+Optimizes Non-POI block search using hasAny to return early or reduce block searches
+
 ### `mixin.ai.poi.fast_portals`
 (default: `true`)  
 Portal search uses the faster POI search and optimized loaded state caching  
